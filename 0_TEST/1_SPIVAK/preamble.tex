@@ -1,0 +1,140 @@
+ 
+% === DATA === (((
+\title{\sc Ejercicio 13--4 \\ M. Spivak. Caluclus.}
+\author{Por Erick I. Rodríguez Juárez.}
+\institute{VALUAMI}
+\date{Miércoles, 7 de Agosto, 2024.}
+% )))
+
+% === FONT === (((
+% \setbeamerfont{normal text}{series= \ttfamily}
+% \AtBeginDocument{\usebeamerfont{normal text}}
+\usefonttheme{professionalfonts}
+\usefonttheme{serif}
+\usepackage{fontspec}
+\setmainfont[
+  BoldFont       = bodonibi,
+	ItalicFont     = Century modern italic2.ttf,
+	BoldItalicFont = bodonibi,
+	SmallCapsFont  = lmromancaps10-regular.otf
+]{Century_modern.ttf}
+% )))
+
+% === FONT IN MATH MODE === (((
+\DeclareSymbolFont{italics}{\encodingdefault}{\rmdefault}{m}{it}
+\DeclareSymbolFontAlphabet{\mathit}{italics}
+\ExplSyntaxOn
+\int_step_inline:nnnn { `A } { 1 } { `Z }
+ {  \exp_args:Nf \DeclareMathSymbol{\char_generate:nn{#1}{11}}{\mathalpha}{italics}{#1} }
+\int_step_inline:nnnn { `a } { 1 } { `z } {  \exp_args:Nf \DeclareMathSymbol{\char_generate:nn{#1}{11}}{\mathalpha}{italics}{#1}}
+\ExplSyntaxOff
+% )))
+
+% === COMMANDS === (((
+\hfuzz=5pt % size of boxes
+\newcommand{\dis}{\displaystyle}
+\renewcommand{\qed}{\hspace{0.5cm}\rule{0.16cm}{0.4cm}}
+\newcommand{\operator}[1]{\mathop{\vphantom{\sum}\mathchoice
+{\vcenter{\hbox{\huge $#1$}}}
+{\vcenter{\hbox{\Large $#1$}}}{#1}{#1}}\displaylimits}
+\newcommand{\suma}{\operator{\includegraphics[scale=0.09]{IMAGES/PORTADA/Sigma.png}}}
+% )))
+
+% === BEAMER TEMPLATE === (((
+% DESPLIEGUE EN VARIAS DIAPOSITIVAS.
+% display un item a la vez
+\beamerdefaultoverlayspecification{<+(1)->}
+% TITULOS EN SMALL CAPS
+\setbeamerfont{title}{family=\scshape\huge}
+\setbeamerfont{frametitle}{family=\scshape\LARGE}
+\setbeamerfont{section in head/foot}{size = \normalsize, family=\scshape}
+
+% sin footline
+\setbeamertemplate{footline}{}
+
+% \setbeamerfont{block title}{series=\sc}
+% \setbeamerfont{block body}{series=\ttfamily }
+% enumerates sin shade
+\setbeamertemplate{enumerate items}[circle] % esto lo estoy usando para los simbolos de enumeración.
+\setbeamertemplate{itemize items}[circle] % esto lo estoy usando para los simbolos de itemize.
+\setbeamertemplate{section in toc}[circle] % esto lo estoy usando para los simbolos de enumeración.
+
+% quitar espacio
+% \addtobeamertemplate{titleframe}{}{\vspace{-5mm}}
+% \addtobeamertemplate{block begin}{\vskip - \bigskipamount}{}
+% \addtobeamertemplate{block end}{}{\vskip - \smallskipamount}
+% \addtobeamertemplate{block example begin}{\vskip - \bigskipamount}{}
+% \addtobeamertemplate{block example end}{}{\vskip - \smallskipamount}
+% \addtobeamertemplate{block definition begin}{\vskip - \bigskipamount}{}
+% \addtobeamertemplate{block definition end}{}{\vskip - \smallskipamount}
+
+% PARA VER SECCIONES HORIZONTALMENTE
+\setbeamertemplate{headline}{
+\leavevmode
+\hbox{
+\begin{beamercolorbox}[wd=1.02\paperwidth,ht=4ex,dp=2ex]{palette quaternary}
+\insertsectionnavigationhorizontal{\paperwidth}{\hskip 0pt plus1filll}{\hskip 0pt plus1filll}
+\end{beamercolorbox}
+}
+}
+% SECCIONES EN PÁGINAS.
+\setbeamerfont{section title}{parent=title}
+\setbeamertemplate{section page}
+{
+    \begin{centering}
+	    \begin{beamercolorbox}[wd= \linewidth ,sep=12pt,center]{secciones}
+    \usebeamerfont{frametitle}\insertsection\par
+    \end{beamercolorbox}
+    \end{centering}
+}
+\AtBeginSection{\frame{\sectionpage}}
+% NUMBERS IN BIBLIOGRAPHY.
+% \setbeamertemplate{bibliography item}[text]
+% )))
+
+% === COLORS === (((
+\beamertemplatenavigationsymbolsempty % for remove the nav. symb.
+\mode<presentation>
+
+\colorlet{maincolor}{purple}
+\colorlet{titlecolor}{teal}
+
+\setbeamercolor{alerted text}{parent=palette secondary, bg=green!50}
+\setbeamercolor*{palette primary}{   fg=white     , bg=maincolor}
+\setbeamercolor*{palette secondary}{ fg=black     , bg=titlecolor!40}
+\setbeamercolor*{palette tertiary}{  fg=white , bg=}
+\setbeamercolor*{palette quaternary}{fg=white     , bg=black!20!maincolor}
+
+\setbeamercolor*{titlelike}{parent=palette tertiary}
+\setbeamercolor{frametitle}{parent=palette primary}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=titlecolor!15!white,fg=black}
+\setbeamercolor{block title}{bg=titlecolor!90!blue,fg=white}
+
+\setbeamercolor{block title example}{bg=maincolor!80!black,fg=white}
+\setbeamercolor{block body example}{bg=maincolor!15!white,fg=black}
+\setbeamercolor{item projected}{bg=maincolor}
+
+\setbeamercolor{section title}{parent=titlelike}
+\setbeamercolor{secciones}{fg=black,bg=titlecolor!20}
+\setbeamercolor{section in head}{parent=palette quaternary}
+\setbeamertemplate{section in head/foot shaded}{\color{black!70!maincolor}\usebeamertemplate{section in head/foot}}
+\mode<all>
+% )))
+
+% === TITLEPAGE === (((
+\setbeamercolor{author}{fg = white}
+\setbeamercolor{institute}{fg = white}
+\setbeamercolor{date}{fg = white}
+\newcommand{\portada}{
+{
+\addfontfeature{LetterSpace=-5}
+\usebackgroundtemplate{\includegraphics[width=  \paperwidth]{IMAGES/PORTADA/purple_teal.pdf}}
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+}
+}
+% )))
